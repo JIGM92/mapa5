@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="css/L.Control.Locate.min.css">
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
         <link rel="stylesheet" href="css/filter.css">
 <link rel="stylesheet" href="css/nouislider.min.css">
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
@@ -41,12 +42,12 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
+        <script src="js/leaflet-search.js"></script>
         <script src="js/tailDT.js"></script>
 <script src="js/nouislider.min.js"></script>
 <script src="js/wNumb.js"></script>
         <script src="data/AreaProyecto_2.js"></script>
-        <script src="data/Atributos_3.js"></script>
-        <script src="data/HALLAZGOSCIMARRON_4.js"></script>
+        <script src="data/HALLAZGOSCIMARRON_3.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -157,11 +158,11 @@
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">area_ha</th>\
-                        <td class="visible-with-data" id="area_ha">' + (feature.properties['area_ha'] !== null ? autolinker.link(feature.properties['area_ha'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="area_ha">' + (feature.properties['area_ha'] !== null ? autolinker.link(String(feature.properties['area_ha']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Descripcio</th>\
-                        <td class="visible-with-data" id="Descripcio">' + (feature.properties['Descripcio'] !== null ? autolinker.link(feature.properties['Descripcio'].toLocaleString()) : '') + '</td>\
+                        <td class="visible-with-data" id="Descripcio">' + (feature.properties['Descripcio'] !== null ? autolinker.link(String(feature.properties['Descripcio']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -200,7 +201,7 @@
         });
         bounds_group.addLayer(layer_AreaProyecto_2);
         map.addLayer(layer_AreaProyecto_2);
-        function pop_Atributos_3(feature, layer) {
+        function pop_HALLAZGOSCIMARRON_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -213,46 +214,52 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">NO_H</th>\
+                        <td class="visible-with-data" id="NO_H">' + (feature.properties['NO_H'] !== null ? autolinker.link(String(feature.properties['NO_H']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['COORDENADA'] !== null ? autolinker.link(feature.properties['COORDENADA'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">COORDENADA X</th>\
+                        <td class="visible-with-data" id="COORDENADA X">' + (feature.properties['COORDENADA X'] !== null ? autolinker.link(String(feature.properties['COORDENADA X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['COORDENA_1'] !== null ? autolinker.link(feature.properties['COORDENA_1'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">COORDENADA Y</th>\
+                        <td class="visible-with-data" id="COORDENADA Y">' + (feature.properties['COORDENADA Y'] !== null ? autolinker.link(String(feature.properties['COORDENADA Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ZONA DE PR'] !== null ? autolinker.link(feature.properties['ZONA DE PR'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">ZONA DE PROYECTO</th>\
+                        <td class="visible-with-data" id="ZONA DE PROYECTO">' + (feature.properties['ZONA DE PROYECTO'] !== null ? autolinker.link(String(feature.properties['ZONA DE PROYECTO']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['FECHA'] !== null ? autolinker.link(feature.properties['FECHA'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">FECHA</th>\
+                        <td class="visible-with-data" id="FECHA">' + (feature.properties['FECHA'] !== null ? autolinker.link(String(feature.properties['FECHA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['CONTRATA'] !== null ? autolinker.link(feature.properties['CONTRATA'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">CONTRATA</th>\
+                        <td class="visible-with-data" id="CONTRATA">' + (feature.properties['CONTRATA'] !== null ? autolinker.link(String(feature.properties['CONTRATA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['T�RMINO'] !== null ? autolinker.link(feature.properties['T�RMINO'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">PROGRAMA</th>\
+                        <td class="visible-with-data" id="PROGRAMA">' + (feature.properties['PROGRAMA'] !== null ? autolinker.link(String(feature.properties['PROGRAMA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['CONDICIONA'] !== null ? autolinker.link(feature.properties['CONDICIONA'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">FACTOR AMBIENTAL</th>\
+                        <td class="visible-with-data" id="FACTOR AMBIENTAL">' + (feature.properties['FACTOR AMBIENTAL'] !== null ? autolinker.link(String(feature.properties['FACTOR AMBIENTAL']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['PROGRAMA'] !== null ? autolinker.link(feature.properties['PROGRAMA'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">ESTATUS</th>\
+                        <td class="visible-with-data" id="ESTATUS">' + (feature.properties['ESTATUS'] !== null ? autolinker.link(String(feature.properties['ESTATUS']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['FACTOR AMB'] !== null ? autolinker.link(feature.properties['FACTOR AMB'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">HALLAZGO</th>\
+                        <td class="visible-with-data" id="HALLAZGO">' + (feature.properties['HALLAZGO'] !== null ? autolinker.link(String(feature.properties['HALLAZGO']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['HALLAZGO'] !== null ? autolinker.link(feature.properties['HALLAZGO'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">IMPACTO POTENCIAL</th>\
+                        <td class="visible-with-data" id="IMPACTO POTENCIAL">' + (feature.properties['IMPACTO POTENCIAL'] !== null ? autolinker.link(String(feature.properties['IMPACTO POTENCIAL']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['/IMPACTO P'] !== null ? autolinker.link(feature.properties['/IMPACTO P'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Medidas'] !== null ? autolinker.link(feature.properties['Medidas'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['EVIDENCIA'] !== null ? autolinker.link(feature.properties['EVIDENCIA'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">Medidas</th>\
+                        <td class="visible-with-data" id="Medidas">' + (feature.properties['Medidas'] !== null ? autolinker.link(String(feature.properties['Medidas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -262,108 +269,11 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_Atributos_3_0() {
-            return {
-                pane: 'pane_Atributos_3',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(114,155,111,1.0)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_Atributos_3');
-        map.getPane('pane_Atributos_3').style.zIndex = 403;
-        map.getPane('pane_Atributos_3').style['mix-blend-mode'] = 'normal';
-        var layer_Atributos_3 = new L.geoJson(json_Atributos_3, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_Atributos_3',
-            layerName: 'layer_Atributos_3',
-            pane: 'pane_Atributos_3',
-            onEachFeature: pop_Atributos_3,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_Atributos_3_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_Atributos_3);
-        function pop_HALLAZGOSCIMARRON_4(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    for (var i in e.target._eventParents) {
-                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
-                            e.target._eventParents[i].resetStyle(e.target);
-                        }
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td class="visible-with-data" id="ID"colspan="2"><strong>ID</strong><br />' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="REVISAR_SU"colspan="2"><strong>REVISAR_SU</strong><br />' + (feature.properties['REVISAR_SU'] !== null ? autolinker.link(feature.properties['REVISAR_SU'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="COORDENADA"colspan="2"><strong>COORDENADA</strong><br />' + (feature.properties['COORDENADA'] !== null ? autolinker.link(feature.properties['COORDENADA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="COORDENA_1"colspan="2"><strong>COORDENA_1</strong><br />' + (feature.properties['COORDENA_1'] !== null ? autolinker.link(feature.properties['COORDENA_1'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="ZONA DE PR"colspan="2"><strong>ZONA DE PR</strong><br />' + (feature.properties['ZONA DE PR'] !== null ? autolinker.link(feature.properties['ZONA DE PR'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="FECHA"colspan="2"><strong>FECHA</strong><br />' + (feature.properties['FECHA'] !== null ? autolinker.link(feature.properties['FECHA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="CONTRATA"colspan="2"><strong>CONTRATA</strong><br />' + (feature.properties['CONTRATA'] !== null ? autolinker.link(feature.properties['CONTRATA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="T?RMINO"colspan="2"><strong>T?RMINO</strong><br />' + (feature.properties['T?RMINO'] !== null ? autolinker.link(feature.properties['T?RMINO'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="CONDICIONA"colspan="2"><strong>CONDICIONA</strong><br />' + (feature.properties['CONDICIONA'] !== null ? autolinker.link(feature.properties['CONDICIONA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="PROGRAMA"colspan="2"><strong>PROGRAMA</strong><br />' + (feature.properties['PROGRAMA'] !== null ? autolinker.link(feature.properties['PROGRAMA'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="FACTOR AMB"colspan="2"><strong>FACTOR AMB</strong><br />' + (feature.properties['FACTOR AMB'] !== null ? autolinker.link(feature.properties['FACTOR AMB'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="HALLAZGO"colspan="2"><strong>HALLAZGO</strong><br />' + (feature.properties['HALLAZGO'] !== null ? autolinker.link(feature.properties['HALLAZGO'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="/IMPACTO P"colspan="2"><strong>/IMPACTO P</strong><br />' + (feature.properties['/IMPACTO P'] !== null ? autolinker.link(feature.properties['/IMPACTO P'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td class="visible-with-data" id="Medidas"colspan="2"><strong>Medidas</strong><br />' + (feature.properties['Medidas'] !== null ? autolinker.link(feature.properties['Medidas'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_HALLAZGOSCIMARRON_4_0(feature) {
-            switch(String(feature.properties['FACTOR AMB'])) {
+        function style_HALLAZGOSCIMARRON_3_0(feature) {
+            switch(String(feature.properties['FACTOR AMBIENTAL'])) {
                 case 'Agua':
                     return {
-                pane: 'pane_HALLAZGOSCIMARRON_4',
+                pane: 'pane_HALLAZGOSCIMARRON_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -377,9 +287,9 @@
                 interactive: true,
             }
                     break;
-                case 'Atmosfera':
+                case 'Atmósfera':
                     return {
-                pane: 'pane_HALLAZGOSCIMARRON_4',
+                pane: 'pane_HALLAZGOSCIMARRON_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -395,7 +305,7 @@
                     break;
                 case 'Fauna':
                     return {
-                pane: 'pane_HALLAZGOSCIMARRON_4',
+                pane: 'pane_HALLAZGOSCIMARRON_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -405,13 +315,13 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(224,130,16,1.0)',
+                fillColor: 'rgba(255,127,0,1.0)',
                 interactive: true,
             }
                     break;
                 case 'Flora':
                     return {
-                pane: 'pane_HALLAZGOSCIMARRON_4',
+                pane: 'pane_HALLAZGOSCIMARRON_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -425,9 +335,25 @@
                 interactive: true,
             }
                     break;
+                case 'NA':
+                    return {
+                pane: 'pane_HALLAZGOSCIMARRON_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(162,99,201,1.0)',
+                interactive: true,
+            }
+                    break;
                 case 'Paisaje':
                     return {
-                pane: 'pane_HALLAZGOSCIMARRON_4',
+                pane: 'pane_HALLAZGOSCIMARRON_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -443,7 +369,7 @@
                     break;
                 case 'Suelo':
                     return {
-                pane: 'pane_HALLAZGOSCIMARRON_4',
+                pane: 'pane_HALLAZGOSCIMARRON_3',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -453,32 +379,32 @@
                 weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(148,48,6,1.0)',
+                fillColor: 'rgba(194,113,14,1.0)',
                 interactive: true,
             }
                     break;
             }
         }
-        map.createPane('pane_HALLAZGOSCIMARRON_4');
-        map.getPane('pane_HALLAZGOSCIMARRON_4').style.zIndex = 404;
-        map.getPane('pane_HALLAZGOSCIMARRON_4').style['mix-blend-mode'] = 'normal';
-        var layer_HALLAZGOSCIMARRON_4 = new L.geoJson(json_HALLAZGOSCIMARRON_4, {
+        map.createPane('pane_HALLAZGOSCIMARRON_3');
+        map.getPane('pane_HALLAZGOSCIMARRON_3').style.zIndex = 403;
+        map.getPane('pane_HALLAZGOSCIMARRON_3').style['mix-blend-mode'] = 'normal';
+        var layer_HALLAZGOSCIMARRON_3 = new L.geoJson(json_HALLAZGOSCIMARRON_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_HALLAZGOSCIMARRON_4',
-            layerName: 'layer_HALLAZGOSCIMARRON_4',
-            pane: 'pane_HALLAZGOSCIMARRON_4',
-            onEachFeature: pop_HALLAZGOSCIMARRON_4,
+            dataVar: 'json_HALLAZGOSCIMARRON_3',
+            layerName: 'layer_HALLAZGOSCIMARRON_3',
+            pane: 'pane_HALLAZGOSCIMARRON_3',
+            onEachFeature: pop_HALLAZGOSCIMARRON_3,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_HALLAZGOSCIMARRON_4_0(feature));
+                return L.circleMarker(latlng, style_HALLAZGOSCIMARRON_3_0(feature));
             },
         });
-        bounds_group.addLayer(layer_HALLAZGOSCIMARRON_4);
-        map.addLayer(layer_HALLAZGOSCIMARRON_4);
+        bounds_group.addLayer(layer_HALLAZGOSCIMARRON_3);
+        map.addLayer(layer_HALLAZGOSCIMARRON_3);
         var osmGeocoder = new L.Control.Geocoder({
             collapsed: true,
             position: 'topleft',
@@ -489,10 +415,8 @@
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
-        var baseMaps = {};
         var overlaysTree = [
-            {label: 'HALLAZGOS CIMARRON<br /><table><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_4_Agua0.png" /></td><td>Agua</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_4_Atmosfera1.png" /></td><td>Atmosfera</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_4_Fauna2.png" /></td><td>Fauna</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_4_Flora3.png" /></td><td>Flora</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_4_Paisaje4.png" /></td><td>Paisaje</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_4_Suelo5.png" /></td><td>Suelo</td></tr></table>', layer: layer_HALLAZGOSCIMARRON_4},
-            {label: '<img src="legend/Atributos_3.png" /> Atributos ', layer: layer_Atributos_3},
+            {label: 'HALLAZGOS CIMARRON<br /><table><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_3_Agua0.png" /></td><td>Agua</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_3_Atmósfera1.png" /></td><td>Atmósfera</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_3_Fauna2.png" /></td><td>Fauna</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_3_Flora3.png" /></td><td>Flora</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_3_NA4.png" /></td><td>NA</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_3_Paisaje5.png" /></td><td>Paisaje</td></tr><tr><td style="text-align: center;"><img src="legend/HALLAZGOSCIMARRON_3_Suelo6.png" /></td><td>Suelo</td></tr></table>', layer: layer_HALLAZGOSCIMARRON_3},
             {label: '<img src="legend/AreaProyecto_2.png" /> Area Proyecto', layer: layer_AreaProyecto_2},
             {label: "Google Satellite", layer: layer_GoogleSatellite_1},
             {label: "Google Terrain", layer: layer_GoogleTerrain_0},]
@@ -507,6 +431,13 @@
         });
         lay.addTo(map);
         setBounds();
+        map.addControl(new L.Control.Search({
+            layer: layer_HALLAZGOSCIMARRON_3,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'ZONA DE PROYECTO'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
         var mapDiv = document.getElementById('map');
         var row = document.createElement('div');
         row.className="row";
@@ -526,7 +457,7 @@
         document.getElementById("all").appendChild(col1);
         document.getElementById("all").appendChild(col2);
         col1.appendChild(mapDiv)
-        var Filters = {"ID": "str","FECHA": "str"};
+        var Filters = {"NO_H": "str","FECHA": "str","FACTOR AMBIENTAL": "str","ESTATUS": "str"};
         function filterFunc() {
           map.eachLayer(function(lyr){
           if ("options" in lyr && "dataVar" in lyr["options"]){
@@ -618,192 +549,246 @@
         }
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
-            var div_ID = document.createElement('div');
-            div_ID.id = "div_ID";
-            div_ID.className= "filterselect";
-            document.getElementById("menu").appendChild(div_ID);
-            sel_ID = document.createElement('select');
-            sel_ID.multiple = true;
-            sel_ID.size = 10;
-            sel_ID.id = "sel_ID";
-            var ID_options_str = "<option value='' unselected></option>";
-            sel_ID.onchange = function(){filterFunc()};
-            ID_options_str  += '<option value="1">1</option>';
-            ID_options_str  += '<option value="10">10</option>';
-            ID_options_str  += '<option value="100">100</option>';
-            ID_options_str  += '<option value="101">101</option>';
-            ID_options_str  += '<option value="102">102</option>';
-            ID_options_str  += '<option value="103">103</option>';
-            ID_options_str  += '<option value="104">104</option>';
-            ID_options_str  += '<option value="105">105</option>';
-            ID_options_str  += '<option value="106">106</option>';
-            ID_options_str  += '<option value="107">107</option>';
-            ID_options_str  += '<option value="108">108</option>';
-            ID_options_str  += '<option value="109">109</option>';
-            ID_options_str  += '<option value="11">11</option>';
-            ID_options_str  += '<option value="110">110</option>';
-            ID_options_str  += '<option value="111">111</option>';
-            ID_options_str  += '<option value="112">112</option>';
-            ID_options_str  += '<option value="113">113</option>';
-            ID_options_str  += '<option value="114">114</option>';
-            ID_options_str  += '<option value="115">115</option>';
-            ID_options_str  += '<option value="116">116</option>';
-            ID_options_str  += '<option value="117">117</option>';
-            ID_options_str  += '<option value="118">118</option>';
-            ID_options_str  += '<option value="119">119</option>';
-            ID_options_str  += '<option value="12">12</option>';
-            ID_options_str  += '<option value="120">120</option>';
-            ID_options_str  += '<option value="121">121</option>';
-            ID_options_str  += '<option value="122">122</option>';
-            ID_options_str  += '<option value="123">123</option>';
-            ID_options_str  += '<option value="124">124</option>';
-            ID_options_str  += '<option value="125">125</option>';
-            ID_options_str  += '<option value="126">126</option>';
-            ID_options_str  += '<option value="127">127</option>';
-            ID_options_str  += '<option value="128">128</option>';
-            ID_options_str  += '<option value="129">129</option>';
-            ID_options_str  += '<option value="13">13</option>';
-            ID_options_str  += '<option value="130">130</option>';
-            ID_options_str  += '<option value="131">131</option>';
-            ID_options_str  += '<option value="132">132</option>';
-            ID_options_str  += '<option value="133">133</option>';
-            ID_options_str  += '<option value="134">134</option>';
-            ID_options_str  += '<option value="135">135</option>';
-            ID_options_str  += '<option value="136">136</option>';
-            ID_options_str  += '<option value="137">137</option>';
-            ID_options_str  += '<option value="138">138</option>';
-            ID_options_str  += '<option value="139">139</option>';
-            ID_options_str  += '<option value="14">14</option>';
-            ID_options_str  += '<option value="140">140</option>';
-            ID_options_str  += '<option value="141">141</option>';
-            ID_options_str  += '<option value="142">142</option>';
-            ID_options_str  += '<option value="143">143</option>';
-            ID_options_str  += '<option value="144">144</option>';
-            ID_options_str  += '<option value="145">145</option>';
-            ID_options_str  += '<option value="146">146</option>';
-            ID_options_str  += '<option value="147">147</option>';
-            ID_options_str  += '<option value="148">148</option>';
-            ID_options_str  += '<option value="149">149</option>';
-            ID_options_str  += '<option value="15">15</option>';
-            ID_options_str  += '<option value="150">150</option>';
-            ID_options_str  += '<option value="151">151</option>';
-            ID_options_str  += '<option value="152">152</option>';
-            ID_options_str  += '<option value="153">153</option>';
-            ID_options_str  += '<option value="154">154</option>';
-            ID_options_str  += '<option value="155">155</option>';
-            ID_options_str  += '<option value="156">156</option>';
-            ID_options_str  += '<option value="157">157</option>';
-            ID_options_str  += '<option value="158">158</option>';
-            ID_options_str  += '<option value="159">159</option>';
-            ID_options_str  += '<option value="16">16</option>';
-            ID_options_str  += '<option value="17">17</option>';
-            ID_options_str  += '<option value="18">18</option>';
-            ID_options_str  += '<option value="19">19</option>';
-            ID_options_str  += '<option value="2">2</option>';
-            ID_options_str  += '<option value="20">20</option>';
-            ID_options_str  += '<option value="21">21</option>';
-            ID_options_str  += '<option value="22">22</option>';
-            ID_options_str  += '<option value="23">23</option>';
-            ID_options_str  += '<option value="24">24</option>';
-            ID_options_str  += '<option value="25">25</option>';
-            ID_options_str  += '<option value="26">26</option>';
-            ID_options_str  += '<option value="27">27</option>';
-            ID_options_str  += '<option value="28">28</option>';
-            ID_options_str  += '<option value="29">29</option>';
-            ID_options_str  += '<option value="3">3</option>';
-            ID_options_str  += '<option value="30">30</option>';
-            ID_options_str  += '<option value="31">31</option>';
-            ID_options_str  += '<option value="32">32</option>';
-            ID_options_str  += '<option value="33">33</option>';
-            ID_options_str  += '<option value="34">34</option>';
-            ID_options_str  += '<option value="35">35</option>';
-            ID_options_str  += '<option value="36">36</option>';
-            ID_options_str  += '<option value="37">37</option>';
-            ID_options_str  += '<option value="38">38</option>';
-            ID_options_str  += '<option value="39">39</option>';
-            ID_options_str  += '<option value="4">4</option>';
-            ID_options_str  += '<option value="40">40</option>';
-            ID_options_str  += '<option value="41">41</option>';
-            ID_options_str  += '<option value="42">42</option>';
-            ID_options_str  += '<option value="43">43</option>';
-            ID_options_str  += '<option value="44">44</option>';
-            ID_options_str  += '<option value="45">45</option>';
-            ID_options_str  += '<option value="46">46</option>';
-            ID_options_str  += '<option value="47">47</option>';
-            ID_options_str  += '<option value="48">48</option>';
-            ID_options_str  += '<option value="49">49</option>';
-            ID_options_str  += '<option value="5">5</option>';
-            ID_options_str  += '<option value="50">50</option>';
-            ID_options_str  += '<option value="51">51</option>';
-            ID_options_str  += '<option value="52">52</option>';
-            ID_options_str  += '<option value="53">53</option>';
-            ID_options_str  += '<option value="54">54</option>';
-            ID_options_str  += '<option value="55">55</option>';
-            ID_options_str  += '<option value="56">56</option>';
-            ID_options_str  += '<option value="57">57</option>';
-            ID_options_str  += '<option value="58">58</option>';
-            ID_options_str  += '<option value="59">59</option>';
-            ID_options_str  += '<option value="6">6</option>';
-            ID_options_str  += '<option value="60">60</option>';
-            ID_options_str  += '<option value="61">61</option>';
-            ID_options_str  += '<option value="62">62</option>';
-            ID_options_str  += '<option value="63">63</option>';
-            ID_options_str  += '<option value="64">64</option>';
-            ID_options_str  += '<option value="65">65</option>';
-            ID_options_str  += '<option value="66">66</option>';
-            ID_options_str  += '<option value="67">67</option>';
-            ID_options_str  += '<option value="68">68</option>';
-            ID_options_str  += '<option value="69">69</option>';
-            ID_options_str  += '<option value="7">7</option>';
-            ID_options_str  += '<option value="70">70</option>';
-            ID_options_str  += '<option value="71">71</option>';
-            ID_options_str  += '<option value="72">72</option>';
-            ID_options_str  += '<option value="73">73</option>';
-            ID_options_str  += '<option value="74">74</option>';
-            ID_options_str  += '<option value="75">75</option>';
-            ID_options_str  += '<option value="76">76</option>';
-            ID_options_str  += '<option value="77">77</option>';
-            ID_options_str  += '<option value="78">78</option>';
-            ID_options_str  += '<option value="79">79</option>';
-            ID_options_str  += '<option value="8">8</option>';
-            ID_options_str  += '<option value="80">80</option>';
-            ID_options_str  += '<option value="81">81</option>';
-            ID_options_str  += '<option value="82">82</option>';
-            ID_options_str  += '<option value="83">83</option>';
-            ID_options_str  += '<option value="84">84</option>';
-            ID_options_str  += '<option value="85">85</option>';
-            ID_options_str  += '<option value="86">86</option>';
-            ID_options_str  += '<option value="87">87</option>';
-            ID_options_str  += '<option value="88">88</option>';
-            ID_options_str  += '<option value="89">89</option>';
-            ID_options_str  += '<option value="9">9</option>';
-            ID_options_str  += '<option value="90">90</option>';
-            ID_options_str  += '<option value="91">91</option>';
-            ID_options_str  += '<option value="92">92</option>';
-            ID_options_str  += '<option value="93">93</option>';
-            ID_options_str  += '<option value="94">94</option>';
-            ID_options_str  += '<option value="95">95</option>';
-            ID_options_str  += '<option value="96">96</option>';
-            ID_options_str  += '<option value="97">97</option>';
-            ID_options_str  += '<option value="98">98</option>';
-            ID_options_str  += '<option value="99">99</option>';
-            sel_ID.innerHTML = ID_options_str;
-            div_ID.appendChild(sel_ID);
-            var lab_ID = document.createElement('div');
-            lab_ID.innerHTML = 'ID';
-            lab_ID.className = 'filterlabel';
-            div_ID.appendChild(lab_ID);
-            var reset_ID = document.createElement('div');
-            reset_ID.innerHTML = 'clear filter';
-            reset_ID.className = 'filterlabel';
-            reset_ID.onclick = function() {
-                var options = document.getElementById("sel_ID").options;
+            var div_NO_H = document.createElement('div');
+            div_NO_H.id = "div_NO_H";
+            div_NO_H.className= "filterselect";
+            document.getElementById("menu").appendChild(div_NO_H);
+            sel_NO_H = document.createElement('select');
+            sel_NO_H.multiple = true;
+            sel_NO_H.size = 10;
+            sel_NO_H.id = "sel_NO_H";
+            var NO_H_options_str = "<option value='' unselected></option>";
+            sel_NO_H.onchange = function(){filterFunc()};
+            NO_H_options_str  += '<option value="H1">H1</option>';
+            NO_H_options_str  += '<option value="H10">H10</option>';
+            NO_H_options_str  += '<option value="H100">H100</option>';
+            NO_H_options_str  += '<option value="H101">H101</option>';
+            NO_H_options_str  += '<option value="H102">H102</option>';
+            NO_H_options_str  += '<option value="H103">H103</option>';
+            NO_H_options_str  += '<option value="H104">H104</option>';
+            NO_H_options_str  += '<option value="H105">H105</option>';
+            NO_H_options_str  += '<option value="H106">H106</option>';
+            NO_H_options_str  += '<option value="H107">H107</option>';
+            NO_H_options_str  += '<option value="H108">H108</option>';
+            NO_H_options_str  += '<option value="H109">H109</option>';
+            NO_H_options_str  += '<option value="H11">H11</option>';
+            NO_H_options_str  += '<option value="H110">H110</option>';
+            NO_H_options_str  += '<option value="H111">H111</option>';
+            NO_H_options_str  += '<option value="H112">H112</option>';
+            NO_H_options_str  += '<option value="H113">H113</option>';
+            NO_H_options_str  += '<option value="H114">H114</option>';
+            NO_H_options_str  += '<option value="H115">H115</option>';
+            NO_H_options_str  += '<option value="H116">H116</option>';
+            NO_H_options_str  += '<option value="H117">H117</option>';
+            NO_H_options_str  += '<option value="H118">H118</option>';
+            NO_H_options_str  += '<option value="H119">H119</option>';
+            NO_H_options_str  += '<option value="H12">H12</option>';
+            NO_H_options_str  += '<option value="H120">H120</option>';
+            NO_H_options_str  += '<option value="H121">H121</option>';
+            NO_H_options_str  += '<option value="H122">H122</option>';
+            NO_H_options_str  += '<option value="H123">H123</option>';
+            NO_H_options_str  += '<option value="H124">H124</option>';
+            NO_H_options_str  += '<option value="H125">H125</option>';
+            NO_H_options_str  += '<option value="H126">H126</option>';
+            NO_H_options_str  += '<option value="H127">H127</option>';
+            NO_H_options_str  += '<option value="H128">H128</option>';
+            NO_H_options_str  += '<option value="H129">H129</option>';
+            NO_H_options_str  += '<option value="H13">H13</option>';
+            NO_H_options_str  += '<option value="H130">H130</option>';
+            NO_H_options_str  += '<option value="H131">H131</option>';
+            NO_H_options_str  += '<option value="H132">H132</option>';
+            NO_H_options_str  += '<option value="H133">H133</option>';
+            NO_H_options_str  += '<option value="H134">H134</option>';
+            NO_H_options_str  += '<option value="H135">H135</option>';
+            NO_H_options_str  += '<option value="H136">H136</option>';
+            NO_H_options_str  += '<option value="H137">H137</option>';
+            NO_H_options_str  += '<option value="H138">H138</option>';
+            NO_H_options_str  += '<option value="H139">H139</option>';
+            NO_H_options_str  += '<option value="H14">H14</option>';
+            NO_H_options_str  += '<option value="H140">H140</option>';
+            NO_H_options_str  += '<option value="H141">H141</option>';
+            NO_H_options_str  += '<option value="H142">H142</option>';
+            NO_H_options_str  += '<option value="H143">H143</option>';
+            NO_H_options_str  += '<option value="H144">H144</option>';
+            NO_H_options_str  += '<option value="H145">H145</option>';
+            NO_H_options_str  += '<option value="H146">H146</option>';
+            NO_H_options_str  += '<option value="H147">H147</option>';
+            NO_H_options_str  += '<option value="H148">H148</option>';
+            NO_H_options_str  += '<option value="H149">H149</option>';
+            NO_H_options_str  += '<option value="H15">H15</option>';
+            NO_H_options_str  += '<option value="H150">H150</option>';
+            NO_H_options_str  += '<option value="H151">H151</option>';
+            NO_H_options_str  += '<option value="H152">H152</option>';
+            NO_H_options_str  += '<option value="H153">H153</option>';
+            NO_H_options_str  += '<option value="H154">H154</option>';
+            NO_H_options_str  += '<option value="H155">H155</option>';
+            NO_H_options_str  += '<option value="H156">H156</option>';
+            NO_H_options_str  += '<option value="H157">H157</option>';
+            NO_H_options_str  += '<option value="H158">H158</option>';
+            NO_H_options_str  += '<option value="H159">H159</option>';
+            NO_H_options_str  += '<option value="H16">H16</option>';
+            NO_H_options_str  += '<option value="H160">H160</option>';
+            NO_H_options_str  += '<option value="H161">H161</option>';
+            NO_H_options_str  += '<option value="H162">H162</option>';
+            NO_H_options_str  += '<option value="H163">H163</option>';
+            NO_H_options_str  += '<option value="H164">H164</option>';
+            NO_H_options_str  += '<option value="H165">H165</option>';
+            NO_H_options_str  += '<option value="H166">H166</option>';
+            NO_H_options_str  += '<option value="H167">H167</option>';
+            NO_H_options_str  += '<option value="H168">H168</option>';
+            NO_H_options_str  += '<option value="H169">H169</option>';
+            NO_H_options_str  += '<option value="H17">H17</option>';
+            NO_H_options_str  += '<option value="H170">H170</option>';
+            NO_H_options_str  += '<option value="H171">H171</option>';
+            NO_H_options_str  += '<option value="H172">H172</option>';
+            NO_H_options_str  += '<option value="H173">H173</option>';
+            NO_H_options_str  += '<option value="H174">H174</option>';
+            NO_H_options_str  += '<option value="H175">H175</option>';
+            NO_H_options_str  += '<option value="H176">H176</option>';
+            NO_H_options_str  += '<option value="H177">H177</option>';
+            NO_H_options_str  += '<option value="H178">H178</option>';
+            NO_H_options_str  += '<option value="H179">H179</option>';
+            NO_H_options_str  += '<option value="H18">H18</option>';
+            NO_H_options_str  += '<option value="H180">H180</option>';
+            NO_H_options_str  += '<option value="H181">H181</option>';
+            NO_H_options_str  += '<option value="H182">H182</option>';
+            NO_H_options_str  += '<option value="H183">H183</option>';
+            NO_H_options_str  += '<option value="H184">H184</option>';
+            NO_H_options_str  += '<option value="H185">H185</option>';
+            NO_H_options_str  += '<option value="H186">H186</option>';
+            NO_H_options_str  += '<option value="H187">H187</option>';
+            NO_H_options_str  += '<option value="H188">H188</option>';
+            NO_H_options_str  += '<option value="H189">H189</option>';
+            NO_H_options_str  += '<option value="H19">H19</option>';
+            NO_H_options_str  += '<option value="H190">H190</option>';
+            NO_H_options_str  += '<option value="H191">H191</option>';
+            NO_H_options_str  += '<option value="H192">H192</option>';
+            NO_H_options_str  += '<option value="H193">H193</option>';
+            NO_H_options_str  += '<option value="H194">H194</option>';
+            NO_H_options_str  += '<option value="H195">H195</option>';
+            NO_H_options_str  += '<option value="H196">H196</option>';
+            NO_H_options_str  += '<option value="H197">H197</option>';
+            NO_H_options_str  += '<option value="H198">H198</option>';
+            NO_H_options_str  += '<option value="H199">H199</option>';
+            NO_H_options_str  += '<option value="H2">H2</option>';
+            NO_H_options_str  += '<option value="H20">H20</option>';
+            NO_H_options_str  += '<option value="H200">H200</option>';
+            NO_H_options_str  += '<option value="H201">H201</option>';
+            NO_H_options_str  += '<option value="H202">H202</option>';
+            NO_H_options_str  += '<option value="H203">H203</option>';
+            NO_H_options_str  += '<option value="H204">H204</option>';
+            NO_H_options_str  += '<option value="H205">H205</option>';
+            NO_H_options_str  += '<option value="H206">H206</option>';
+            NO_H_options_str  += '<option value="H207">H207</option>';
+            NO_H_options_str  += '<option value="H208">H208</option>';
+            NO_H_options_str  += '<option value="H209">H209</option>';
+            NO_H_options_str  += '<option value="H21">H21</option>';
+            NO_H_options_str  += '<option value="H210">H210</option>';
+            NO_H_options_str  += '<option value="H211">H211</option>';
+            NO_H_options_str  += '<option value="H212">H212</option>';
+            NO_H_options_str  += '<option value="H213">H213</option>';
+            NO_H_options_str  += '<option value="H22">H22</option>';
+            NO_H_options_str  += '<option value="H23">H23</option>';
+            NO_H_options_str  += '<option value="H24">H24</option>';
+            NO_H_options_str  += '<option value="H25">H25</option>';
+            NO_H_options_str  += '<option value="H26">H26</option>';
+            NO_H_options_str  += '<option value="H27">H27</option>';
+            NO_H_options_str  += '<option value="H28">H28</option>';
+            NO_H_options_str  += '<option value="H29">H29</option>';
+            NO_H_options_str  += '<option value="H3">H3</option>';
+            NO_H_options_str  += '<option value="H30">H30</option>';
+            NO_H_options_str  += '<option value="H31">H31</option>';
+            NO_H_options_str  += '<option value="H32">H32</option>';
+            NO_H_options_str  += '<option value="H33">H33</option>';
+            NO_H_options_str  += '<option value="H34">H34</option>';
+            NO_H_options_str  += '<option value="H35">H35</option>';
+            NO_H_options_str  += '<option value="H36">H36</option>';
+            NO_H_options_str  += '<option value="H37">H37</option>';
+            NO_H_options_str  += '<option value="H38">H38</option>';
+            NO_H_options_str  += '<option value="H39">H39</option>';
+            NO_H_options_str  += '<option value="H4">H4</option>';
+            NO_H_options_str  += '<option value="H40">H40</option>';
+            NO_H_options_str  += '<option value="H41">H41</option>';
+            NO_H_options_str  += '<option value="H42">H42</option>';
+            NO_H_options_str  += '<option value="H43">H43</option>';
+            NO_H_options_str  += '<option value="H44">H44</option>';
+            NO_H_options_str  += '<option value="H45">H45</option>';
+            NO_H_options_str  += '<option value="H46">H46</option>';
+            NO_H_options_str  += '<option value="H47">H47</option>';
+            NO_H_options_str  += '<option value="H48">H48</option>';
+            NO_H_options_str  += '<option value="H49">H49</option>';
+            NO_H_options_str  += '<option value="H5">H5</option>';
+            NO_H_options_str  += '<option value="H50">H50</option>';
+            NO_H_options_str  += '<option value="H51">H51</option>';
+            NO_H_options_str  += '<option value="H52">H52</option>';
+            NO_H_options_str  += '<option value="H53">H53</option>';
+            NO_H_options_str  += '<option value="H54">H54</option>';
+            NO_H_options_str  += '<option value="H55">H55</option>';
+            NO_H_options_str  += '<option value="H56">H56</option>';
+            NO_H_options_str  += '<option value="H57">H57</option>';
+            NO_H_options_str  += '<option value="H58">H58</option>';
+            NO_H_options_str  += '<option value="H59">H59</option>';
+            NO_H_options_str  += '<option value="H6">H6</option>';
+            NO_H_options_str  += '<option value="H60">H60</option>';
+            NO_H_options_str  += '<option value="H61">H61</option>';
+            NO_H_options_str  += '<option value="H62">H62</option>';
+            NO_H_options_str  += '<option value="H63">H63</option>';
+            NO_H_options_str  += '<option value="H64">H64</option>';
+            NO_H_options_str  += '<option value="H65">H65</option>';
+            NO_H_options_str  += '<option value="H66">H66</option>';
+            NO_H_options_str  += '<option value="H67">H67</option>';
+            NO_H_options_str  += '<option value="H68">H68</option>';
+            NO_H_options_str  += '<option value="H69">H69</option>';
+            NO_H_options_str  += '<option value="H7">H7</option>';
+            NO_H_options_str  += '<option value="H70">H70</option>';
+            NO_H_options_str  += '<option value="H71">H71</option>';
+            NO_H_options_str  += '<option value="H72">H72</option>';
+            NO_H_options_str  += '<option value="H73">H73</option>';
+            NO_H_options_str  += '<option value="H74">H74</option>';
+            NO_H_options_str  += '<option value="H75">H75</option>';
+            NO_H_options_str  += '<option value="H76">H76</option>';
+            NO_H_options_str  += '<option value="H77">H77</option>';
+            NO_H_options_str  += '<option value="H78">H78</option>';
+            NO_H_options_str  += '<option value="H79">H79</option>';
+            NO_H_options_str  += '<option value="H8">H8</option>';
+            NO_H_options_str  += '<option value="H80">H80</option>';
+            NO_H_options_str  += '<option value="H81">H81</option>';
+            NO_H_options_str  += '<option value="H82">H82</option>';
+            NO_H_options_str  += '<option value="H83">H83</option>';
+            NO_H_options_str  += '<option value="H84">H84</option>';
+            NO_H_options_str  += '<option value="H85">H85</option>';
+            NO_H_options_str  += '<option value="H86">H86</option>';
+            NO_H_options_str  += '<option value="H87">H87</option>';
+            NO_H_options_str  += '<option value="H88">H88</option>';
+            NO_H_options_str  += '<option value="H89">H89</option>';
+            NO_H_options_str  += '<option value="H9">H9</option>';
+            NO_H_options_str  += '<option value="H90">H90</option>';
+            NO_H_options_str  += '<option value="H91">H91</option>';
+            NO_H_options_str  += '<option value="H92">H92</option>';
+            NO_H_options_str  += '<option value="H93">H93</option>';
+            NO_H_options_str  += '<option value="H94">H94</option>';
+            NO_H_options_str  += '<option value="H95">H95</option>';
+            NO_H_options_str  += '<option value="H96">H96</option>';
+            NO_H_options_str  += '<option value="H97">H97</option>';
+            NO_H_options_str  += '<option value="H98">H98</option>';
+            NO_H_options_str  += '<option value="H99">H99</option>';
+            sel_NO_H.innerHTML = NO_H_options_str;
+            div_NO_H.appendChild(sel_NO_H);
+            var lab_NO_H = document.createElement('div');
+            lab_NO_H.innerHTML = 'NO_H';
+            lab_NO_H.className = 'filterlabel';
+            div_NO_H.appendChild(lab_NO_H);
+            var reset_NO_H = document.createElement('div');
+            reset_NO_H.innerHTML = 'clear filter';
+            reset_NO_H.className = 'filterlabel';
+            reset_NO_H.onclick = function() {
+                var options = document.getElementById("sel_NO_H").options;
                 for (var i=0; i < options.length; i++) {
                     options[i].selected = false;
                 }
                 filterFunc();
             };
-            div_ID.appendChild(reset_ID);
+            div_NO_H.appendChild(reset_NO_H);
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
             var div_FECHA = document.createElement('div');
@@ -812,13 +797,17 @@
             document.getElementById("menu").appendChild(div_FECHA);
             sel_FECHA = document.createElement('select');
             sel_FECHA.multiple = true;
-            sel_FECHA.size = 8;
+            sel_FECHA.size = 10;
             sel_FECHA.id = "sel_FECHA";
             var FECHA_options_str = "<option value='' unselected></option>";
             sel_FECHA.onchange = function(){filterFunc()};
             FECHA_options_str  += '<option value="03/09/2024">03/09/2024</option>';
+            FECHA_options_str  += '<option value="04/02/2025">04/02/2025</option>';
             FECHA_options_str  += '<option value="04/09/2024">04/09/2024</option>';
+            FECHA_options_str  += '<option value="05/02/2025">05/02/2025</option>';
             FECHA_options_str  += '<option value="05/09/2024">05/09/2024</option>';
+            FECHA_options_str  += '<option value="06/02/2025">06/02/2025</option>';
+            FECHA_options_str  += '<option value="07/02/2025">07/02/2025</option>';
             FECHA_options_str  += '<option value="25/11/2024">25/11/2024</option>';
             FECHA_options_str  += '<option value="26/11/2024">26/11/2024</option>';
             FECHA_options_str  += '<option value="27/11/2024">27/11/2024</option>';
@@ -841,6 +830,75 @@
                 filterFunc();
             };
             div_FECHA.appendChild(reset_FECHA);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_FACTORAMBIENTAL = document.createElement('div');
+            div_FACTORAMBIENTAL.id = "div_FACTORAMBIENTAL";
+            div_FACTORAMBIENTAL.className= "filterselect";
+            document.getElementById("menu").appendChild(div_FACTORAMBIENTAL);
+            sel_FACTORAMBIENTAL = document.createElement('select');
+            sel_FACTORAMBIENTAL.multiple = true;
+            sel_FACTORAMBIENTAL.size = 7;
+            sel_FACTORAMBIENTAL.id = "sel_FACTORAMBIENTAL";
+            var FACTORAMBIENTAL_options_str = "<option value='' unselected></option>";
+            sel_FACTORAMBIENTAL.onchange = function(){filterFunc()};
+            FACTORAMBIENTAL_options_str  += '<option value="Agua">Agua</option>';
+            FACTORAMBIENTAL_options_str  += '<option value="Atmósfera">Atmósfera</option>';
+            FACTORAMBIENTAL_options_str  += '<option value="Fauna">Fauna</option>';
+            FACTORAMBIENTAL_options_str  += '<option value="Flora">Flora</option>';
+            FACTORAMBIENTAL_options_str  += '<option value="NA">NA</option>';
+            FACTORAMBIENTAL_options_str  += '<option value="Paisaje">Paisaje</option>';
+            FACTORAMBIENTAL_options_str  += '<option value="Suelo">Suelo</option>';
+            sel_FACTORAMBIENTAL.innerHTML = FACTORAMBIENTAL_options_str;
+            div_FACTORAMBIENTAL.appendChild(sel_FACTORAMBIENTAL);
+            var lab_FACTORAMBIENTAL = document.createElement('div');
+            lab_FACTORAMBIENTAL.innerHTML = 'FACTOR AMBIENTAL';
+            lab_FACTORAMBIENTAL.className = 'filterlabel';
+            div_FACTORAMBIENTAL.appendChild(lab_FACTORAMBIENTAL);
+            var reset_FACTORAMBIENTAL = document.createElement('div');
+            reset_FACTORAMBIENTAL.innerHTML = 'clear filter';
+            reset_FACTORAMBIENTAL.className = 'filterlabel';
+            reset_FACTORAMBIENTAL.onclick = function() {
+                var options = document.getElementById("sel_FACTORAMBIENTAL").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_FACTORAMBIENTAL.appendChild(reset_FACTORAMBIENTAL);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_ESTATUS = document.createElement('div');
+            div_ESTATUS.id = "div_ESTATUS";
+            div_ESTATUS.className= "filterselect";
+            document.getElementById("menu").appendChild(div_ESTATUS);
+            sel_ESTATUS = document.createElement('select');
+            sel_ESTATUS.multiple = true;
+            sel_ESTATUS.size = 4;
+            sel_ESTATUS.id = "sel_ESTATUS";
+            var ESTATUS_options_str = "<option value='' unselected></option>";
+            sel_ESTATUS.onchange = function(){filterFunc()};
+            ESTATUS_options_str  += '<option value="ATENDIDO">ATENDIDO</option>';
+            ESTATUS_options_str  += '<option value="N/A">N/A</option>';
+            ESTATUS_options_str  += '<option value="NA">NA</option>';
+            ESTATUS_options_str  += '<option value="PENDIENTE">PENDIENTE</option>';
+            sel_ESTATUS.innerHTML = ESTATUS_options_str;
+            div_ESTATUS.appendChild(sel_ESTATUS);
+            var lab_ESTATUS = document.createElement('div');
+            lab_ESTATUS.innerHTML = 'ESTATUS';
+            lab_ESTATUS.className = 'filterlabel';
+            div_ESTATUS.appendChild(lab_ESTATUS);
+            var reset_ESTATUS = document.createElement('div');
+            reset_ESTATUS.innerHTML = 'clear filter';
+            reset_ESTATUS.className = 'filterlabel';
+            reset_ESTATUS.onclick = function() {
+                var options = document.getElementById("sel_ESTATUS").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_ESTATUS.appendChild(reset_ESTATUS);
         </script>
     </body>
 </html>
